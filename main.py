@@ -1,39 +1,54 @@
 from flask import Flask, request
 import os
 from helper import *
+import db
 
 app = Flask(__name__)
 
 
-
-@app.route('/requirements', methods = ['GET'])
-def get_requirements():
-    if check_file_is_exist('requirements.txt'):
-        return get_file_content('requirements.txt')
+@app.route('/names', methods = ['GET'])
+def names():
+    query = '''
+    SELECT COUNT(*) FROM (SELECT FirstName FROM Customers GROUP BY FirstName)
+    '''
+    result = db.run_query(query)
+    if result:
+        return str(result[0][0])
     else:
-        return 'File not found!!!'
+        ''
 
-@app.route('/space', methods = ['GET'])
-def get_astros():
-    return get_astros_count()
-
-@app.route('/generate-users', methods = ['GET'])
-def get_fake_users():
-    if 'count' in request.args:
-        count = request.args['count']
-        if check_param_value_is_valid(count):
-            return get_fake_users_mails(int(count))
-        else:
-            return 'Param count not valid - {}'.format(count)
+@app.route('/tracks', methods = ['GET'])
+def tracks():
+    query = '''
+    SELECT COUNT(*) FROM Tracks
+    '''
+    result = db.run_query(query)
+    if result:
+        return str(result[0][0])
     else:
-        return 'Param [count] is missing'
+        ''
 
-@app.route('/mean', methods = ['GET'])
-def get_mean():
-    if check_file_is_exist('hw.csv'):
-        return get_avg_weight_height('hw.csv')
-    return 'File not found!!!'
+@app.route('/tracks-sec', methods = ['GET'])
+def tracks_sec():
+    query = '''
+    SELECT Name, Milliseconds/1000 FROM Tracks
+    '''
+    return str(db.run_query(query))
 
+@app.route('/customers/', methods = ['GET'])
+def customers():
+    query = '''
+    SELECT * FROM customers  
+    '''
+    filter = request.args.get('filter')
+    if filter:
+        query += db.generate_where(filter)
+    order = request.args.get('ordering')
+    if order:
+        query += db.ordering(order)
+    query += ';'
+    print(query)
+    return str(db.run_query(query))
 
 if __name__ == '__main__':
-    app.run(port=5001)
+    app.run(port=5001, debug=True)
