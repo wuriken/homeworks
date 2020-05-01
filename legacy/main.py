@@ -1,7 +1,5 @@
 from flask import Flask, request
-import os
-from helper import *
-import db
+from legacy import db
 
 app = Flask(__name__)
 
