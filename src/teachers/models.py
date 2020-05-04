@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Teacher(models.Model):
 
     first_name = models.CharField(max_length=64)
@@ -8,4 +9,5 @@ class Teacher(models.Model):
     education = models.CharField(max_length=64)
 
     def __str__(self):
-        return 'FirstName: {}. LastName: {}. Age: {}. Education: {}'.format(self.first_name, self.last_name, self.age, self.education)
+        return 'FirstName: {}. LastName: {}. Age: {}. Education: {}'.\
+            format(self.first_name, self.last_name, self.age, self.education)

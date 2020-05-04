@@ -1,16 +1,22 @@
 import os
 import random
+from csv import reader
+
+
 from faker import Faker
-from csv import DictReader, reader
+
 from students.models import Student
 
+
 def get_file_content(file_name: str) -> str:
-    with open (os.path.join(os.getcwd(), file_name), 'r') as file:
+    with open(os.path.join(os.getcwd(), file_name), 'r') as file:
         result = file.read()
     return result
 
+
 def check_file_is_exist(file_name: str) -> bool:
     return os.path.exists(os.path.join(os.getcwd(), file_name))
+
 
 def create_student():
     faker = Faker()
@@ -18,18 +24,17 @@ def create_student():
 
 
 def get_fake_users_mails(count: int) -> str:
-    result = []
     faker = Faker()
-    for _ in range(count):
-        result.append('{} {}'.format(faker.name().split(' ')[-2], faker.email()))
+    result = [f'{faker.name().split( )[-2]} {faker.email()}' for _ in range(count)]
     return str(result)
 
+
 def check_param_value_is_valid(param: str) -> bool:
-    if param:
-        if param.isdigit():
-            if int(param) < 101 and int(param) > 0:
-                return True
-    return False
+    if param and param.isdigit() and int(param) < 101 and int(param) > 0:
+        return True
+    else:
+        return False
+
 
 def get_avg_weight_height(file_name: str) -> {}:
     height_array = []
@@ -46,12 +51,14 @@ def get_avg_weight_height(file_name: str) -> {}:
     result.update({'height_avg': get_avg_from_array(height_array, 2.54)})
     return result
 
+
 def get_float_value(input_str: str) -> float:
     try:
         result = float(input_str.strip())
         return result
     except ValueError:
         return 0
+
 
 def get_avg_from_array(array: list, coefficient: float) -> float:
     return round(sum(array)/len(array) * coefficient, 2)
