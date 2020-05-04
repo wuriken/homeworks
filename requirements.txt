@@ -7,7 +7,6 @@ flake8-builtins==1.5.2
 flake8-import-order==0.18.1
 flake8-print==3.1.4
 mccabe==0.6.1
-pkg-resources==0.0.0
 pycodestyle==2.5.0
 pyflakes==2.1.1
 python-dateutil==2.8.1
