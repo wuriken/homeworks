@@ -8,4 +8,4 @@ class Group(models.Model):
     university_name = models.CharField(max_length=64)
 
     def __str__(self):
-        return 'GroupName: {}. Faculty: {}. University: {}'.format(self.group_name, self.faculty, self.university_name)
+        return 'GroupName: {}. Faculty: {}. University: {}'.format(self.group_name, self.faculty, self.university_name)  # noqa

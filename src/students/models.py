@@ -19,4 +19,4 @@ class Student(models.Model):
         self.save()
 
     def __str__(self):
-        return 'FirstName: {}. LastName: {}. Age: {}'.format(self.first_name, self.last_name, self.age)
+        return 'FirstName: {}. LastName: {}. Age: {}'.format(self.first_name, self.last_name, self.age)  # noqa

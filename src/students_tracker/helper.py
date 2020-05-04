@@ -20,12 +20,13 @@ def check_file_is_exist(file_name: str) -> bool:
 
 def create_student():
     faker = Faker()
-    return Student.objects.create(first_name=faker.first_name(), last_name=faker.last_name(), age=random.randint(17, 60))
+    return Student.objects.create(first_name=faker.first_name(),
+                                  last_name=faker.last_name(), age=random.randint(17, 60)) # noqa
 
 
 def get_fake_users_mails(count: int) -> str:
     faker = Faker()
-    result = [f'{faker.name().split( )[-2]} {faker.email()}' for _ in range(count)]
+    result = [f'{faker.name().split( )[-2]} {faker.email()}' for _ in range(count)] # noqa
     return str(result)
 
 

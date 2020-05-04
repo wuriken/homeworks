@@ -1,4 +1,2 @@
 [flake8]
-max-line-lenght=120
-exclude=migrations
-
+max-line-lenght = 120

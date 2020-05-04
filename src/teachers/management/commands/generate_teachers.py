@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = 'Generate teachers with param'  # noqa builtin name from python
 
     def add_arguments(self, parser):
-        parser.add_argument('-c', '--count', type=str, help='Create teachers count',)
+        parser.add_argument('-c', '--count', type=str, help='Create teachers count',)  # noqa
 
     def handle(self, *args, **options):
         fake = Faker()
