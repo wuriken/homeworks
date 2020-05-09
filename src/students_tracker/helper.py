@@ -18,7 +18,7 @@ def check_file_is_exist(file_name: str) -> bool:
     return os.path.exists(os.path.join(os.getcwd(), file_name))
 
 
-def create_student():
+def create_random_student():
     faker = Faker()
     return Student.objects.create(first_name=faker.first_name(),
                                   last_name=faker.last_name(), age=random.randint(17, 60)) # noqa
