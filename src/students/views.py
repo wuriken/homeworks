@@ -1,8 +1,9 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from students.models import Student
+
 from students_tracker.helper import check_param_value_is_valid, create_random_student
 
 
@@ -20,9 +21,11 @@ def generate_students(request):
         result = [str(create_random_student()) + '\n' for _ in range(int(count))]
     return HttpResponse(result)
 
+
 def students(request):
     students = Student.objects.all()
     return render(request, 'students-list.html', context={'students': students})
+
 
 def create_student(request):
     from students.forms import StudentCreateForm
@@ -34,7 +37,7 @@ def create_student(request):
     else:
         form = StudentCreateForm()
 
-    context = {'create_form':form}
+    context = {'create_form': form}
 
     return render(request, 'create.html', context=context)
 
@@ -50,9 +53,10 @@ def edit_student(request, pk):
     else:
         form = StudentCreateForm(instance=student)
 
-    context = {'form':form}
+    context = {'form': form}
 
     return render(request, 'edit.html', context=context)
+
 
 def delete_student(request, pk):
     student = get_object_or_404(Student, id=pk)

@@ -1,5 +1,5 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from teachers.models import Teacher
@@ -20,7 +20,7 @@ def create_teacher(request):
     else:
         form = TeacherCreateForm()
 
-    context = {'create_form':form}
+    context = {'create_form': form}
 
     return render(request, 'create.html', context=context)
 
@@ -36,9 +36,10 @@ def edit_teacher(request, pk):
     else:
         form = TeacherCreateForm(instance=student)
 
-    context = {'form':form}
+    context = {'form': form}
 
     return render(request, 'edit.html', context=context)
+
 
 def delete_teacher(request, pk):
     teacher = get_object_or_404(Teacher, id=pk)

@@ -8,4 +8,5 @@ class TeacherAdmin(admin.ModelAdmin):
     list_display = ('id', 'first_name', 'last_name', 'age', 'education')
     readonly_fields = ('age', )
 
+
 admin.site.register(Teacher, TeacherAdmin)

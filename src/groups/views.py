@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from groups.models import Group
@@ -20,7 +20,7 @@ def create_group(request):
     else:
         form = GroupCreateForm()
 
-    context = {'create_form':form}
+    context = {'create_form': form}
 
     return render(request, 'create.html', context=context)
 
@@ -36,9 +36,10 @@ def edit_group(request, pk):
     else:
         form = GroupCreateForm(instance=group)
 
-    context = {'form':form}
+    context = {'form': form}
 
     return render(request, 'edit.html', context=context)
+
 
 def delete_group(request, pk):
     teacher = get_object_or_404(Group, id=pk)

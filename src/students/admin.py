@@ -14,4 +14,5 @@ class StudentAdmin(admin.ModelAdmin):
             pass
         return queryset
 
+
 admin.site.register(Student, StudentAdmin)

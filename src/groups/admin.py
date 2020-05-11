@@ -8,4 +8,5 @@ class GroupAdmin(admin.ModelAdmin):
     list_display = ('id', 'group_name', 'faculty', 'university_name')
     readonly_fields = ('university_name', )
 
+
 admin.site.register(Group, GroupAdmin)
