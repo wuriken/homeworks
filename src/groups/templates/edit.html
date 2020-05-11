@@ -6,13 +6,14 @@
 </head>
 <body>
 
-Create student
+Edit group
 
 <form method="post">
     {% csrf_token %}
-    {{ create_form.as_p }}
+    {{ form.as_p }}
     <button type="submit">GO</button>
 </form>
+
 
 </body>
 </html>

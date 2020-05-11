@@ -6,9 +6,12 @@
 </head>
 <body>
 
-<a href="teachers/create">Create Teacher</a> <br>
-<a href="students/create">Create Student</a> <br>
-<a href="groups/create">Create Group</a> <br>
+<a href="{% url 'students:create' %}">Create Students</a>
+<a href="{% url 'students:list' %}">List Students</a> <br>
+<a href="{% url 'teachers:create' %}">Create teacher</a>
+<a href="{% url 'teachers:list' %}">List teachers</a> <br>
+<a href="{% url 'groups:create' %}">Create group</a>
+<a href="{% url 'groups:list' %}">List groups</a> <br>
 
 </body>
 </html>
