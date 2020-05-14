@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="{% url 'index' %}">Index</a>
+<a href="{% url 'groups:create' %}">Create group</a> <br>
+
+{% for group in groups %}
+    <a href="{% url 'groups:edit' pk=group.id %}"> {{ group.id }} </a>
+{{ group }}  <a href="{% url 'groups:delete' pk=group.id %}">Delete</a><br>
+{% endfor %}
+
+
+</body>
+</html>

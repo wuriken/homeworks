@@ -20,9 +20,11 @@ class Command(BaseCommand):
             if options.get('count').isdigit():
                 count = int(options.get('count'))
         choices = ['High', 'Middle', 'Low']
+        insert_data = []
         for _ in range(count):
-            Teacher.objects.create(first_name=fake.first_name(),
-                                   last_name=fake.last_name(),
-                                   age=random.randint(22, 60),
-                                   education=random.choice(choices),
-                                   )
+            insert_data.append(Teacher(first_name=fake.first_name(),
+                                       last_name=fake.last_name(),
+                                       age=random.randint(22, 60),
+                                       education=random.choice(choices),
+                                       ))
+        Teacher.objects.bulk_create(insert_data)

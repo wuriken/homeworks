@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="{% url 'index' %}">Index</a>
+<a href="{% url 'teachers:create' %}">Create teacher</a> <br>
+
+{% for teacher in teachers %}
+    <a href="{% url 'teachers:edit' pk=teacher.id %}"> {{ teacher.id }} </a>
+{{ teacher }}  <a href="{% url 'teachers:delete' pk=teacher.id %}">Delete</a><br>
+{% endfor %}
+
+
+</body>
+</html>
