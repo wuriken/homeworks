@@ -6,6 +6,7 @@ class Student(models.Model):
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
     age = models.PositiveSmallIntegerField()
+    phone = models.CharField(max_length=24)
 
     @property
     def full_name(self):
