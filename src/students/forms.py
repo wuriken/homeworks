@@ -21,3 +21,9 @@ class StudentCreateForm(forms.ModelForm):
             raise ValidationError(message='Field phone not a digit!')
         else:
             return phone
+
+
+class ContactUs(forms.Form):
+    title = forms.CharField(max_length=32)
+    message = forms.CharField(max_length=256)
+    email_from = forms.EmailField()

@@ -2,7 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
+from students.forms import ContactUs
 from students.models import Student
+from students.tasks import send_mail_async
 
 from students_tracker.helper import check_param_value_is_valid, create_random_student
 
@@ -62,3 +64,19 @@ def delete_student(request, pk):
     student = get_object_or_404(Student, id=pk)
     student.delete()
     return HttpResponseRedirect(reverse('students:list'))
+
+
+def contact_us(request):
+    if request.method == 'POST':
+        form = ContactUs(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
+            result = {}
+            result.update({'title': cleaned_data.get('title')})
+            result.update({'message': cleaned_data.get('message')})
+            result.update({'email_from': cleaned_data.get('email_from')})
+            send_mail_async.apply_async(args=[result])
+        return HttpResponseRedirect(reverse('index'))
+    form = ContactUs()
+    context = {'form': form}
+    return render(request, 'contact-us.html', context=context)
