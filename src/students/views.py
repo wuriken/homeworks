@@ -71,10 +71,9 @@ def contact_us(request):
         form = ContactUs(request.POST)
         if form.is_valid():
             cleaned_data = form.cleaned_data
-            result = {}
-            result.update({'title': cleaned_data.get('title')})
-            result.update({'message': cleaned_data.get('message')})
-            result.update({'email_from': cleaned_data.get('email_from')})
+            result = {'title': cleaned_data.get('title'),
+                      'message': cleaned_data.get('message'),
+                      'email_from': cleaned_data.get('email_from')}
             send_mail_async.apply_async(args=[result])
         return HttpResponseRedirect(reverse('index'))
     form = ContactUs()

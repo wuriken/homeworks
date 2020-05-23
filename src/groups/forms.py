@@ -11,4 +11,6 @@ class GroupCreateForm(forms.ModelForm):
             'group_name',
             'faculty',
             'university_name',
+            'curator',
+            'headman',
         )
