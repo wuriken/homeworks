@@ -7,9 +7,9 @@ class Group(models.Model):
     faculty = models.CharField(max_length=64)
     university_name = models.CharField(max_length=64)
     curator = models.ForeignKey('teachers.Teacher',
-                                   on_delete=models.SET_NULL, null=True)
+                                on_delete=models.SET_NULL, null=True)
     headman = models.ForeignKey('students.Student',
-                                   on_delete=models.SET_NULL, null=True)
+                                on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return 'GroupName: {}. Faculty: {}. University: {}. Curator: {}. Headman: {}'.\
