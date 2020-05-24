@@ -9,11 +9,26 @@
 <a href="{% url 'index' %}">Index</a>
 <a href="{% url 'groups:create' %}">Create group</a> <br>
 
+<table>
+    <tr>
+    <th> Group Name </th>
+    <th> faculty </th>
+    <th> university_name </th>
+    <th> curator </th>
+    <th> headman </th>
+        </tr>
 {% for group in groups %}
-    <a href="{% url 'groups:edit' pk=group.id %}"> {{ group.id }} </a>
-{{ group }}  <a href="{% url 'groups:delete' pk=group.id %}">Delete</a><br>
+    <tr>
+    <td>   <a href="{% url 'groups:edit' pk=group.id %}"> {{ group.id }} </a> </td>
+    <td>   {{ group.faculty }}  </td>
+    <td> {{ group.university_name }} </td>
+    <td> <a href="{% url 'teachers:edit' pk=group.curator.id %}"> {{ group.curator.full_name }} </a></td>
+    <td> <a href="{% url 'students:edit' pk=group.headman.id %}"> {{ group.headman.full_name }} </a></td>
+    <td><a href="{% url 'groups:delete' pk=group.id %}">Delete</a><br></td>
+    </tr>
 {% endfor %}
 
+</table>
 
 </body>
 </html>
