@@ -1,3 +1,4 @@
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include, path
 
@@ -10,4 +11,6 @@ urlpatterns = [
     path('teachers/', include('teachers.urls')),
     path('groups/', include('groups.urls')),
     path('', index, name='index'),
+    url(r'^silk/', include('silk.urls', namespace='silk')),
+
 ]

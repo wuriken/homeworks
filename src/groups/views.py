@@ -6,8 +6,8 @@ from groups.models import Group
 
 
 def groups(request):
-    teachers = Group.objects.all()
-    return render(request, 'groups-list.html', context={'groups': teachers})
+    groups = Group.objects.all().select_related('curator', 'headman')
+    return render(request, 'groups-list.html', context={'groups': groups})
 
 
 def create_group(request):
@@ -42,6 +42,6 @@ def edit_group(request, pk):
 
 
 def delete_group(request, pk):
-    teacher = get_object_or_404(Group, id=pk)
-    teacher.delete()
+    group = get_object_or_404(Group, id=pk)
+    group.delete()
     return HttpResponseRedirect(reverse('groups:list'))
